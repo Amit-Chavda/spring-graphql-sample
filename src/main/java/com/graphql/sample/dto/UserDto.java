@@ -1,11 +1,18 @@
 package com.graphql.sample.dto;
 
+import java.util.List;
+
 public class UserDto {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private String physicalAddress;
+    private AddressDto address;
     private String ipAddress;
+
+    public AddressDto getAddress() {
+        return address;
+    }
+
 
     public String getEmailAddress() {
         return emailAddress;
@@ -15,12 +22,9 @@ public class UserDto {
         this.emailAddress = emailAddress;
     }
 
-    public String getPhysicalAddress() {
-        return physicalAddress;
-    }
 
-    public void setPhysicalAddress(String physicalAddress) {
-        this.physicalAddress = physicalAddress;
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public String getIpAddress() {

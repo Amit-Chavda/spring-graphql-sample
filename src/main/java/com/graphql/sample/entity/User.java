@@ -1,10 +1,6 @@
 package com.graphql.sample.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -18,7 +14,16 @@ public class User {
 	private String email;
 	private String gender;
 	private String ipAddress;
-	private String address;
+	@OneToOne(fetch = FetchType.EAGER,targetEntity = Address.class,cascade = CascadeType.ALL)
+	private Address address;
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public Long getId() {
 		return id;
@@ -68,13 +73,6 @@ public class User {
 		this.ipAddress = ipAddress;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	@Override
 	public String toString() {

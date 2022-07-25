@@ -34,8 +34,9 @@ public class UserController {
 		return "success";
 	}
 
-	@RequestMapping(path = "/Save", method = RequestMethod.POST)
+	@PostMapping(path = "/Save")
 	public UserDto save(@RequestBody UserDto user) {
+		System.out.println(user.getAddress().getAddressLine1());
 		return  userService.save(user);
 	}
 

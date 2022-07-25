@@ -2,6 +2,7 @@ package com.graphql.sample.service;
 
 
 import com.graphql.sample.dto.UserDto;
+import com.graphql.sample.entity.Address;
 import com.graphql.sample.entity.User;
 import com.graphql.sample.repository.UserRepository;
 import org.modelmapper.ModelMapper;
