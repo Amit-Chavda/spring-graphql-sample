@@ -1,10 +1,32 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Query{
     users:[User]
     userById(id:ID):User
+}
+type Mutation{
+    save(userInput:UserInput):User
+    removeById(id:ID!):String
+}
+
+#input types
+input UserInput{
+    firstName:String!
+    lastName:String!
+    emailAddress:String!
+    ipAddress:String!
+    address:AddressInput!
+}
+input AddressInput{
+    addressLine1:String!
+    addressLine2:String!
+    addressLine3:String!
+    addressLine4:String!
+    addressLine5:String!
+    addressPostCode:Int!
 }
 
 #object types
