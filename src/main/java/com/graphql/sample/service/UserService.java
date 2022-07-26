@@ -2,7 +2,6 @@ package com.graphql.sample.service;
 
 
 import com.graphql.sample.dto.UserDto;
-import com.graphql.sample.entity.Address;
 import com.graphql.sample.entity.User;
 import com.graphql.sample.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -38,12 +37,6 @@ public class UserService {
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
-
-    public void saveAll(List<UserDto> userDtos) {
-        List<User> users = Arrays.asList(mapper.map(userDtos, User[].class));
-        userRepository.saveAll(users);
-    }
-
 
     public List<UserDto> findAll() {
         List<User> users = userRepository.findAll();

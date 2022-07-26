@@ -2,47 +2,42 @@ package com.graphql.sample.controller;
 
 import com.graphql.sample.dto.UserDto;
 import com.graphql.sample.service.UserService;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController
-@RequestMapping("User/")
+@Controller
 public class UserController {
 
-	private UserService userService;
+    private UserService userService;
 
 
-	public UserController(UserService userService) {
-		this.userService = userService;
-	}
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
-	@GetMapping("/{id}")
-	public UserDto findUserById(@PathVariable Long id) {
-		return userService.findById(id);
-	}
+    @QueryMapping(name = "userById")
+    public UserDto findUserById(@Argument Long id) {
+        return userService.findById(id);
+    }
 
-	@DeleteMapping("/{id}")
-	public String removeUserById(@PathVariable Long id) {
-		return userService.removeById(id);
-	}
+    public String removeUserById(@Argument Long id) {
+        return userService.removeById(id);
+    }
 
-	@PostMapping("/SaveAll")
-	public String saveAll(@RequestBody List<UserDto> userDtos) {
-		userService.saveAll(userDtos);
-		return "success";
-	}
 
-	@PostMapping(path = "/Save")
-	public UserDto save(@RequestBody UserDto user) {
-		System.out.println(user.getAddress().getAddressLine1());
-		return  userService.save(user);
-	}
+    public UserDto save(@Argument UserDto user) {
+        return userService.save(user);
+    }
 
-	@GetMapping("/All")
-	public List<UserDto> findAll() {
-		return userService.findAll();
-	}
+    @QueryMapping(name = "users")
+    public List<UserDto> findAll() {
+        return userService.findAll();
+    }
 
 }

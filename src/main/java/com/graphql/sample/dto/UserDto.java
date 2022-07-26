@@ -1,7 +1,5 @@
 package com.graphql.sample.dto;
 
-import java.util.List;
-
 public class UserDto {
     private String firstName;
     private String lastName;
